@@ -12,11 +12,9 @@ def menu_scene(game: Game):
 
   game.screen.fill('white')
 
-  welcome_text_surface = game.text_font.render('Welcome!', True, 'black')
-  game.screen.blit(welcome_text_surface, (
-    game.screen.get_width() / 2 - welcome_text_surface.get_width() / 2,
-    game.screen.get_height() / 2 - welcome_text_surface.get_height() / 2
-  ))
+  for component_name in game.ui_components['menu']:
+    component = game.ui_components['menu'][component_name]
+    component.process()
 
   pygame.display.flip()
   game.delta = game.clock.tick(60) / 1000

@@ -12,7 +12,7 @@ def gameplay_scene(game: Game):
 
   game.screen.fill('black')
 
-  welcome_text_surface = game.text_font.render('Game board!', True, 'white')
+  welcome_text_surface = game.md_text_font.render('Game board!', True, 'white')
   game.screen.blit(welcome_text_surface, (
     game.screen.get_width() / 2 - welcome_text_surface.get_width() / 2,
     game.screen.get_height() / 2 - welcome_text_surface.get_height() / 2
