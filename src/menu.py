@@ -3,6 +3,10 @@ import pygame
 from game import Game
 from ui import text
 
+from entities.ball import Ball
+
+ball = Ball(25, '#ffd343')
+
 def menu_scene(game: Game):
   for event in pygame.event.get():
     if event.type == pygame.QUIT:
@@ -31,6 +35,7 @@ def menu_scene(game: Game):
 
   game.screen.fill('#141418')
 
+  ball.process(game.screen, game.delta)
   title.process(game.screen, game.lg_text_font)
   hit_enter.process(game.screen, game.md_text_font)
 

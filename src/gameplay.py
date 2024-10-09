@@ -1,6 +1,10 @@
 import pygame
 from game import Game
 
+from entities.ball import Ball
+
+ball = Ball(25, '#ffd343')
+
 def gameplay_scene(game: Game):
   for event in pygame.event.get():
     if event.type == pygame.QUIT:
@@ -10,13 +14,9 @@ def gameplay_scene(game: Game):
       if event.key == pygame.K_RETURN:
         game.scene = 0
 
-  game.screen.fill('black')
+  game.screen.fill('#141418')
 
-  welcome_text_surface = game.md_text_font.render('Game board!', True, 'white')
-  game.screen.blit(welcome_text_surface, (
-    game.screen.get_width() / 2 - welcome_text_surface.get_width() / 2,
-    game.screen.get_height() / 2 - welcome_text_surface.get_height() / 2
-  ))
+  ball.process(game.screen, game.delta)
 
   pygame.display.flip()
   game.delta = game.clock.tick(60) / 1000
