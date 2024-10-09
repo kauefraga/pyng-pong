@@ -8,6 +8,11 @@ class Ball:
     self.color = color
     self.position = pygame.Vector2(0, 0)
     self.speed = pygame.Vector2(0, 0)
+    self.is_loaded = False
+
+  def load_resources(self):
+    self.is_loaded = True
+    self.hit_sfx = pygame.mixer.Sound('assets/sfx/ball_hit_wall.wav')
 
   def process(self, screen: pygame.Surface, delta: float):
     if self.position == (0, 0):
@@ -21,18 +26,22 @@ class Ball:
     # collision left
     if self.position.x - self.radius <= 0:
       self.speed.x *= -1
+      self.hit_sfx.play()
 
     # collision top
     if self.position.y - self.radius <= 0:
       self.speed.y *= -1
+      self.hit_sfx.play()
 
     # collision right
     if self.position.x + self.radius >= screen.get_width():
       self.speed.x *= -1
+      self.hit_sfx.play()
 
     # collision bottom
     if self.position.y + self.radius >= screen.get_height():
       self.speed.y *= -1
+      self.hit_sfx.play()
 
     self.position += self.speed * delta
 

@@ -14,11 +14,14 @@ class Game:
     self.lg_text_font = pygame.font.Font('assets/fonts/cocogoose.ttf', 72)
     self.number_font = pygame.font.Font('assets/fonts/roboto.ttf', 72)
 
+    pygame.mixer.init()
+
     self.clock = pygame.time.Clock()
     self.running = True
     self.delta = 0
     self.scene = 0
 
   def __del__(self):
+    pygame.mixer.quit()
     pygame.font.quit()
     pygame.quit()

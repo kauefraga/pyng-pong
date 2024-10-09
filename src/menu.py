@@ -8,6 +8,9 @@ from entities.ball import Ball
 ball = Ball(25, '#ffd343')
 
 def menu_scene(game: Game):
+  if not ball.is_loaded:
+    ball.load_resources()
+
   for event in pygame.event.get():
     if event.type == pygame.QUIT:
       game.running = False
